@@ -1,0 +1,41 @@
+<!--Extends The Base Template-->
+{% extends 'base.html' %}
+
+<!--Page Title Block Starts-->
+{% block title %}About{% endblock title %}
+<!--Page Title Block Ends-->
+
+<!--Content Block Starts-->
+{% block content %}
+
+<main>
+    <div class="container py-1">
+      <header class="pb-3 mb-4 border-bottom">
+        <div class="d-flex align-items-center text-dark text-decoration-none">
+          <span class="fs-4 mt-3">ABOUT US - The Reminder Things !</span>
+        </div>
+      </header>
+  
+      <div class="p-1 mb-5 bg-light rounded-3 text-center">
+        <div class="container-fluid py-0" style=" border-radius:14px 4px;">
+          <h1 class="display-5 fw-bold"><span class="text-success">THE</span> REMINDER THINGS</h1>
+          <p class="col-md-8 fs-5 mx-auto">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis quod nemo voluptatibus praesentium commodi nisi asperiores cumque, ullam, aliquid inventore itaque delectus doloremque voluptatum enim velit! Esse dicta consequuntur possimus!</p>
+          <a href="{% url 'contact' %}"><button class="btn btn-success btn-lg m-4" type="button">Contact Us</button></a>
+        </div>
+      </div>
+
+      {% load static %}
+      <div class="row align-items-md-stretch mb-5">
+        <div class="col-md-6">
+            <img src="{% static 'images/todo4.jpg' %}" class="img-fluid" style="width:500px;height:350px;" alt="...">
+        </div>
+        <div class="col-md-6">
+            <img src="{% static 'images/todo1.jpg' %}" class="img-fluid" style="width:500px;height:350px;" alt="...">
+        </div>
+      </div>
+  
+    </div>
+  </main>
+
+{% endblock content %}
+<!--Content Block Ends-->

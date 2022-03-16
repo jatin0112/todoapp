@@ -1,0 +1,26 @@
+<!--Extends The Base Template-->
+{% extends 'base.html' %}
+
+<!--Page Title Block Starts-->
+{% block title %}Edit Reminder{% endblock title %}
+<!--Page Title Block Ends-->
+{% load crispy_forms_tags %}
+<!--Content Block Starts-->
+{% block content %}
+
+<div class="container mt-3">
+
+    {% if edit_rem.user == request.user %}
+    <form method="POST">
+        {% csrf_token %}
+        {{rem_form|crispy}}
+        <button type="submit" class="btn btn-primary mt-2">Update Reminder</button>
+      </form>
+      {% else %}
+      <p>You Are Not Allowed To Do This !</p>
+      {% endif %}      
+          
+</div>
+
+{% endblock content %}
+<!--Content Block Ends-->

@@ -1,0 +1,66 @@
+<!--Extends The Base Template-->
+{% extends 'base.html' %}
+
+<!--Page Title Block Starts-->
+{% block title %}Reminders{% endblock title %}
+<!--Page Title Block Ends-->
+
+<!--Content Block Starts-->
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="container">
+
+  <header class="pb-3 mb-4 border-bottom">
+    <div class="d-flex align-items-center text-dark text-decoration-none">
+      <span class="fs-4 text-dark mt-3">Your Reminders ! Are You Not Forgetting Something ?<br>
+      If Your Forget ? So We Are Here To Remind You.</span>
+    </div>
+  </header>
+
+    <div class="container mt-3">
+    <form method="POST">
+        {% csrf_token %}
+        {{form|crispy}}
+        <button type="submit" class="btn btn-primary mt-2">Add Reminder</button>
+    </form>
+    </div>
+
+    <table class="table table-bordered my-5" style="box-shadow:black 2px 2px 2px 2px;">
+        <thead class="table-warning fs-3">
+          <tr>
+            <th class="col-1 text-center">S.No</th>
+            <th class="col-8 text-center">Reminder Thing's</th>
+            <th class="col-2 text-center">Status</th>
+            <th class="col-1 text-center">Edit</th>
+            <th class="col-1 text-center">Delete</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            {% for thing in data %}
+            {% if thing.status %}
+          <tr class="table-success">
+            <td>{{forloop.counter}} )</td>
+            <td class="text-center"><del>{{thing.title}}</del></td>
+            <td class="text-center"><a href="{% url 'pending' thing.id %}" class="btn btn-success">Completed</a></td>
+            <td class="text-center"><a href="{% url 'edit' thing.id %}" class="btn btn-success">Edit</a></td>
+            <td class="text-center"><a href="{% url 'delete' thing.id %}" class="btn btn-danger">Delete</a></td>
+          </tr>
+          {% else %}
+          <tr class="table-light">
+            <td>{{forloop.counter}} )</td>
+            <td class="text-center">{{thing.title}}</td>
+            <td class="text-center"><a href="{% url 'complete' thing.id %}" class="btn btn-success">Pending</a></td>
+            <td class="text-center"><a href="{% url 'edit' thing.id %}" class="btn btn-success">Edit</a></td>
+            <td class="text-center"><a href="{% url 'delete' thing.id %}" class="btn btn-danger">Delete</a></td>
+          </tr>
+          {% endif %}
+          {% endfor %}  
+        </tbody>
+    </table>
+        
+</div>
+
+{% endblock content %}
+<!--Content Block Ends-->

@@ -1,0 +1,27 @@
+<!--Extends The Base Template-->
+{% extends 'base.html' %}
+
+<!--Page Title Block Starts-->
+{% block title %}About{% endblock title %}
+<!--Page Title Block Ends-->
+
+<!--Content Block Starts-->
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="container mt-4 text-center">
+    <h2>Signup - The Reminder Things</h2>
+</div>
+<div class="container mt-5 col-5">
+    <form method="POST">
+        {% csrf_token %}
+        <b>{{ signup_form|crispy }}</b>
+
+        <button type="submit" class="btn btn-primary mt-3">Signup</button>
+    </form>
+</div>
+
+
+
+{% endblock content %}
+<!--Content Block Ends-->
